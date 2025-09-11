@@ -19,7 +19,7 @@ header {
     padding: 20px;
 }
 
-.pc {
+pc {
     width: calc(45% - 50px);
     background-color: white;
     padding: 20px;
