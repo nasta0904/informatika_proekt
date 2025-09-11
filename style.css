@@ -3,6 +3,14 @@
     box-sizing: border-box;
 }
 
+pk {
+    width: calc(50% - 60px);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 50px rgba(0,0,0,0.1);
+    transition: transform .2s ease-in-out;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
