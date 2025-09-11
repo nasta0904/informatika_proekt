@@ -4,7 +4,7 @@
 }
 
 pk {
-    width: calc(50% - 60px);
+    width: calc(45% - 50px);
     background-color: white;
     padding: 20px;
     box-shadow: 0 2px 50px rgba(0,0,0,0.1);
