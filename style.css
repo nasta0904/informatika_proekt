@@ -9,6 +9,7 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+}
 
 header {
     text-align: center;
@@ -16,15 +17,6 @@ header {
     color: white;
     padding: 20px;
 }
-
-pc {
-    width: calc(45% - 50px);
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 2px 50px rgba(0,0,0,0.1);
-    transition: transform .2s ease-in-out;
-}
-
 
 h1 {
     font-size: 2em;
