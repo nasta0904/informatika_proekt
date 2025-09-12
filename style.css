@@ -21,3 +21,21 @@ h1 {
     font-size: 2em;
     margin-bottom: 0;
 }
+
+main {
+    max-width: 800px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+section {
+    width: calc(50% - 10px);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform .2s ease-in-out;
+}
