@@ -36,11 +36,6 @@ main {
     flex-grow: 1; /* Растягиваем основную секцию на высоту окна */
 }
 
-pc{ 
-    width="100"; 
-   height: auto; 
-  }
-
 
 section {
     width: calc(50% - 10px); /* Размер секций */
