@@ -36,13 +36,7 @@ main {
     flex-grow: 1; /* Растягиваем основную секцию на высоту окна */
 }
 
-pc {
-      width: calc(50% - 30px); /* Размер секций */
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: all 0.2s ease-in-out;
-    
+зс{ width: 40%; height: auto; }
 }
 
 section {
