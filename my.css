@@ -40,7 +40,7 @@ main {
 section {
     width: calc(50% - 10px); /* Размер секций */
     background-color: white;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: all 0.2s ease-in-out; /* Улучшение скорости анимации */
 }
