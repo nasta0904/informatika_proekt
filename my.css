@@ -9,7 +9,7 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
-    min-height: 1000vh; /* минимальна высота равна окну браузера */
+    min-height: 100vh; /* минимальна высота равна окну браузера */
     display: flex;
     flex-direction: column;
 }
@@ -22,7 +22,7 @@ header {
 }
 
 h1, h2 {
-    margin: 10px 0; /* Поля вокруг заголовков */
+    margin: 1px 0; /* Поля вокруг заголовков */
 }
 
 main {
@@ -33,11 +33,11 @@ main {
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
-    flex-grow: 10; /* Растягиваем основную секцию на высоту окна */
+    flex-grow: 1; /* Растягиваем основную секцию на высоту окна */
 }
 
 section {
-    width: calc(60% - 50px); /* Размер секций */
+    width: calc(50% - 10px); /* Размер секций */
     background-color: white;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
