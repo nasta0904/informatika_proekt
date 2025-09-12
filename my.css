@@ -36,7 +36,7 @@ main {
     flex-grow: 1; /* Растягиваем основную секцию на высоту окна */
 }
 
-.pc {
+pc {
       width: calc(50% - 30px); /* Размер секций */
     background-color: white;
     padding: 20px;
