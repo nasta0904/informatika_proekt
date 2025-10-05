@@ -5,6 +5,7 @@
 }
 
 body {
+    letter-spacing: 1;
     font-family: Blippo, fantasy;
     line-height: 1.6;
     background-color: #f0f8ff;
