@@ -106,17 +106,7 @@ nav a:hover {
     font-size: 3rem;
 }
 
-.quiz-section {
-    background: white;
-    border-radius: 10px;
-    padding: 2rem;
-    margin: 2rem 0;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
 
-.quiz-question {
-    margin-bottom: 1.5rem;
-}
 
 button {
     background: #4b6cb7;
