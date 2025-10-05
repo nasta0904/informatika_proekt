@@ -5,8 +5,7 @@
 }
 
 body {
-    letter-spacing: 21px;
-    font-family: Blippo, fantasy;
+    font-family: DejaVu Sans Mono, monospace;
     line-height: 1.6;
     background-color: #f0f8ff;
     color: #333;
