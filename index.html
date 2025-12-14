@@ -22,152 +22,186 @@
             
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#hero" class="nav-link active"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Главная</a></li>
                     <li><a href="#components" class="nav-link"><i class="fas fa-microchip"></i> Компоненты</a></li>
-                    <li><a href="#game" class="nav-link"><i class="fas fa-gamepad"></i> Игра</a></li>
+                    <li><a href="#game" class="nav-link"><i class="fas fa-gamepad"></i> Сборка ПК</a></li>
                     <li><a href="#quiz" class="nav-link"><i class="fas fa-question-circle"></i> Тест</a></li>
-                    <li><a href="#progress" class="nav-link"><i class="fas fa-chart-line"></i> Прогресс</a></li>
+                    <li><a href="#achievements" class="nav-link"><i class="fas fa-trophy"></i> Достижения</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!-- Notification Area -->
+    <div id="notificationArea"></div>
+
     <!-- Main Content -->
     <main class="container">
-        <!-- Hero Section -->
-        <section id="hero" class="hero-section">
-            <div class="hero-content">
-                <h2>Изучай компьютер с удовольствием!</h2>
-                <p>Интерактивный курс для 5-6 классов, который превратит изучение устройства компьютера в увлекательное приключение.</p>
-                <div class="cta-buttons">
-                    <button onclick="startLearning()" class="btn-primary">
-                        <i class="fas fa-play"></i> Начать обучение
-                    </button>
-                    <button onclick="showTour()" class="btn-secondary">
-                        <i class="fas fa-info-circle"></i> Виртуальный тур
-                    </button>
+        <!-- Home Section -->
+        <section id="home" class="section">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h2>Добро пожаловать на курс "Устройство компьютера"!</h2>
+                    <p>Здесь ты узнаешь, из чего состоит компьютер, как работают его компоненты и сможешь проверить свои знания в увлекательных играх и тестах.</p>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary" onclick="startLearning()">
+                            <i class="fas fa-play"></i> Начать обучение
+                        </button>
+                        <button class="btn btn-secondary" onclick="takeTour()">
+                            <i class="fas fa-info-circle"></i> Экскурсия по сайту
+                        </button>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="hero-image">
-                <div class="computer-model">
-                    <div class="screen">
-                        <div class="component-animation">⚡</div>
-                        <div class="component-animation">💾</div>
-                        <div class="component-animation">🎮</div>
+                <div class="hero-image">
+                    <div class="computer-illustration">
+                        <div class="screen">
+                            <div class="component-icons">
+                                <i class="fas fa-microchip"></i>
+                                <i class="fas fa-memory"></i>
+                                <i class="fas fa-hdd"></i>
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <p>Изучай. Собирай. Тестируй.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Stats -->
-        <div class="stats">
-            <div class="stat-card">
-                <i class="fas fa-microchip"></i>
-                <h3 id="componentsLearned">0</h3>
-                <p>Компонентов изучено</p>
+            <!-- Stats -->
+            <div class="stats-section">
+                <div class="stat-card">
+                    <i class="fas fa-microchip"></i>
+                    <h3 id="componentsCount">0</h3>
+                    <p>Изучено компонентов</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3 id="achievementsCount">0</h3>
+                    <p>Получено достижений</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <h3 id="timeSpent">0 мин</h3>
+                    <p>Времени обучения</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-star"></i>
+                    <h3 id="quizScore">0%</h3>
+                    <p>Результат теста</p>
+                </div>
             </div>
-            <div class="stat-card">
-                <i class="fas fa-trophy"></i>
-                <h3 id="achievementsCount">0</h3>
-                <p>Достижений получено</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-clock"></i>
-                <h3 id="timeSpent">0 мин</h3>
-                <p>Времени обучения</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-star"></i>
-                <h3 id="quizScore">0%</h3>
-                <p>Результат теста</p>
-            </div>
-        </div>
+        </section>
 
         <!-- Components Section -->
-        <section id="components">
+        <section id="components" class="section" style="display: none;">
             <h2 class="section-title">
-                <i class="fas fa-cogs"></i> Основные компоненты компьютера
+                <i class="fas fa-cogs"></i> Компоненты компьютера
             </h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">Изучи каждый компонент компьютера. Нажми "Узнать больше", чтобы получить подробную информацию.</p>
             
-            <div class="components-grid" id="componentsGrid">
-                <!-- Components will be loaded dynamically -->
+            <div class="components-grid" id="componentsContainer">
+                <!-- Компоненты будут загружены через JavaScript -->
             </div>
         </section>
 
-        <!-- Interactive Game -->
-        <section id="game" class="game-section">
+        <!-- Game Section -->
+        <section id="game" class="section" style="display: none;">
             <h2 class="section-title">
                 <i class="fas fa-gamepad"></i> Собери компьютер
             </h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">Перетащи компоненты в системный блок, чтобы собрать компьютер!</p>
             
-            <div class="game-container">
-                <div class="drag-drop-area" id="dropZone">
-                    <h3>Соберите системный блок</h3>
-                    <p>Перетащите компоненты в нужные места</p>
-                    <div id="gameBoard"></div>
+            <div class="game-section">
+                <div class="game-container">
+                    <div class="drag-area">
+                        <h3>Системный блок</h3>
+                        <p>Перетащи компоненты сюда</p>
+                        <div id="gameBoard">
+                            <p style="color: #999; margin-top: 2rem;">Пока здесь пусто...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="component-list">
+                        <h3 style="color: var(--secondary); margin-bottom: 1rem;">Компоненты для сборки:</h3>
+                        <div class="draggable-component" draggable="true" data-component="Процессор">
+                            <i class="fas fa-microchip"></i> Процессор
+                        </div>
+                        <div class="draggable-component" draggable="true" data-component="Оперативная память">
+                            <i class="fas fa-memory"></i> Оперативная память
+                        </div>
+                        <div class="draggable-component" draggable="true" data-component="Жёсткий диск">
+                            <i class="fas fa-hdd"></i> Жёсткий диск
+                        </div>
+                        <div class="draggable-component" draggable="true" data-component="Видеокарта">
+                            <i class="fas fa-gamepad"></i> Видеокарта
+                        </div>
+                        <div class="draggable-component" draggable="true" data-component="Материнская плата">
+                            <i class="fas fa-project-diagram"></i> Материнская плата
+                        </div>
+                        <div class="draggable-component" draggable="true" data-component="Блок питания">
+                            <i class="fas fa-plug"></i> Блок питания
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="game-stats">
-                    <h3>Компоненты для сборки</h3>
-                    <div id="componentsList"></div>
-                    <div class="game-info">
-                        <p>Осталось собрать: <span id="remainingParts">6</span></p>
-                        <button onclick="resetGame()" class="btn-secondary">
-                            <i class="fas fa-redo"></i> Начать заново
-                        </button>
-                    </div>
+                <div class="game-info">
+                    <p style="margin-bottom: 1rem;">Осталось собрать: <strong id="remainingParts">6</strong> компонентов</p>
+                    <button class="btn btn-secondary" onclick="resetGame()">
+                        <i class="fas fa-redo"></i> Начать заново
+                    </button>
                 </div>
             </div>
         </section>
 
         <!-- Quiz Section -->
-        <section id="quiz" class="quiz-container">
+        <section id="quiz" class="section" style="display: none;">
             <h2 class="section-title">
                 <i class="fas fa-question-circle"></i> Проверь свои знания
             </h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">Ответь на вопросы и узнай, насколько хорошо ты усвоил материал.</p>
             
-            <div class="quiz-progress">
-                <div class="progress-bar" id="quizProgress"></div>
-            </div>
-            
-            <div id="quizContent">
+            <div class="quiz-section">
+                <div class="quiz-progress">
+                    <div class="progress-bar" id="quizProgress"></div>
+                </div>
+                
                 <div class="question" id="questionText">
                     Загрузка вопросов...
                 </div>
                 
                 <div class="options-grid" id="optionsContainer">
-                    <!-- Options will be loaded here -->
+                    <!-- Варианты ответов будут загружены через JavaScript -->
                 </div>
                 
                 <div class="quiz-controls">
-                    <button onclick="prevQuestion()" class="btn-secondary" id="prevBtn">
+                    <button class="btn btn-secondary" onclick="prevQuestion()" id="prevBtn" style="display: none;">
                         <i class="fas fa-arrow-left"></i> Назад
                     </button>
-                    <button onclick="nextQuestion()" class="btn-primary" id="nextBtn">
+                    <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn">
                         Далее <i class="fas fa-arrow-right"></i>
                     </button>
-                    <button onclick="submitQuiz()" class="btn-success" id="submitBtn" style="display: none;">
+                    <button class="btn btn-primary" onclick="submitQuiz()" id="submitBtn" style="display: none;">
                         <i class="fas fa-paper-plane"></i> Завершить тест
                     </button>
                 </div>
                 
-                <div id="quizResult" class="quiz-result" style="display: none;"></div>
+                <div id="quizResult">
+                    <!-- Результаты теста будут показаны здесь -->
+                </div>
             </div>
         </section>
 
-        <!-- Progress Section -->
-        <section id="progress">
+        <!-- Achievements Section -->
+        <section id="achievements" class="section" style="display: none;">
             <h2 class="section-title">
-                <i class="fas fa-chart-line"></i> Твой прогресс
+                <i class="fas fa-trophy"></i> Твои достижения
             </h2>
+            <p style="margin-bottom: 1.5rem; color: #666;">Здесь отображаются твои успехи в изучении устройства компьютера.</p>
             
-            <div class="progress-chart">
-                <canvas id="progressChart" width="400" height="200"></canvas>
-            </div>
-            
-            <div class="achievements-list" id="achievementsList">
-                <!-- Achievements will be loaded here -->
+            <div class="achievements-section">
+                <div class="achievements-grid" id="achievementsGrid">
+                    <!-- Достижения будут загружены через JavaScript -->
+                </div>
             </div>
         </section>
     </main>
@@ -182,12 +216,17 @@
             
             <div class="footer-section">
                 <h3><i class="fas fa-link"></i> Быстрые ссылки</h3>
-                <ul>
-                    <li><a href="#hero">Главная</a></li>
-                    <li><a href="#components">Компоненты</a></li>
-                    <li><a href="#game">Игра</a></li>
-                    <li><a href="#quiz">Тест</a></li>
-                </ul>
+                <a href="#home">Главная</a>
+                <a href="#components">Компоненты</a>
+                <a href="#game">Сборка ПК</a>
+                <a href="#quiz">Тест</a>
+                <a href="#achievements">Достижения</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3><i class="fas fa-graduation-cap"></i> Для учителей</h3>
+                <p>Материалы для проведения уроков, контрольные вопросы и методические рекомендации.</p>
+                <p>Пишите на: info@компьютер-курс.рф</p>
             </div>
             
             <div class="footer-section">
@@ -201,21 +240,24 @@
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2025 Устройство компьютера - Интерактивный курс. Все права защищены.</p>
+            <p>&copy; 2024 Устройство компьютера - Интерактивный курс. Все права защищены.</p>
+            <p style="margin-top: 0.5rem;">Сайт создан для учащихся 5-6 классов</p>
         </div>
     </footer>
-
-    <!-- Achievements Notifications -->
-    <div class="achievements" id="achievementsContainer"></div>
 
     <!-- Modal for Component Details -->
     <div id="componentModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <div id="modalContent"></div>
+            <div class="modal-header">
+                <h2 id="modalTitle"></h2>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Содержимое модального окна -->
+            </div>
         </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
