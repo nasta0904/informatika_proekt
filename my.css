@@ -276,7 +276,7 @@
             margin-bottom: 1.5rem;
         }
 
-        .component-card h3 {
+        .component-card h2 {
             color: var(--secondary);
             margin-bottom: 1rem;
             font-size: 1.4rem;
@@ -285,7 +285,7 @@
         .component-card p {
             color: #666;
             margin-bottom: 1.5rem;
-            font-size: 0.95rem;
+            font-size: 2rem;
         }
 
         /* Learning Path */
