@@ -224,14 +224,6 @@
 
         .feature-card h3 {
             font-size: 1.5rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
-            color: #666;
-            line-height: 1.6;
-        }
 
         /* Components Preview */
         .components-section {
