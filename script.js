@@ -141,3 +141,29 @@
             }
         `;
         document.head.appendChild(style);
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+			const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+			const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+			}, {
+    threshold: 0.1,
+  rootMargin: '50px'
+});
+
+			animatedElements.forEach(element => {
+    observer.observe(element);
+});
+
+			setTimeout(() => {
+    animatedElements[0]?.classList.add('visible');
+}, 300);
+});
