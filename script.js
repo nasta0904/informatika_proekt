@@ -167,3 +167,34 @@ document.addEventListener('DOMContentLoaded', function () {
     animatedElements[0]?.classList.add('visible');
 }, 300);
 });
+
+
+
+
+      // Анимация появления при прокрутке
+        document.addEventListener('DOMContentLoaded', function () {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+            function checkScroll() {
+                animatedElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+
+            // Проверяем при загрузке
+            checkScroll();
+
+            // Проверяем при прокрутке
+            window.addEventListener('scroll', checkScroll);
+
+            // Инициализируем все элементы как видимые для демонстрации
+            // В реальном проекте уберите эту строку
+            animatedElements.forEach(element => {
+                element.classList.add('visible');
+            });
+        });
