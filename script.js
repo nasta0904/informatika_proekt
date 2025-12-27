@@ -198,3 +198,36 @@ document.addEventListener('DOMContentLoaded', function () {
                 element.classList.add('visible');
             });
         });
+     // Анимация появления элементов при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            
+            // Небольшая задержка для лучшего эффекта
+            setTimeout(() => {
+                animatedElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.style.animationDelay = `${index * 0.2}s`;
+                        element.classList.add('animate-on-scroll');
+                    }, 100);
+                });
+            }, 300);
+        });
+
+        // Анимация появления при скролле (опционально)
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.component-card');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('animate-on-scroll');
+                }
+            });
+        }
+        
+        // Запуск анимации при скролле
+        window.addEventListener('scroll', handleScrollAnimation);
+        // Запуск при загрузке
+        handleScrollAnimation();
