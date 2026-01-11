@@ -92,6 +92,119 @@
                 </div>
             </div>
         </section>
+
+        <!-- Простые практические задания -->
+        <section class="practical-tasks">
+            <h2 class="section-title">
+                <i class="fas fa-tasks"></i>
+                Практические задания
+            </h2>
+            
+            <div class="tasks-container">
+                <!-- Задание 1: Вопрос-ответ -->
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">Задание 1</div>
+                        <div class="task-title">Короткие вопросы</div>
+                    </div>
+                    
+                    <div class="simple-task">
+                        <div class="simple-question">
+                            <p>1. Какой компонент компьютера называют "мозгом"?</p>
+                            <input type="text" class="answer-input" id="q1" placeholder="Введите ответ...">
+                        </div>
+                        
+                        <div class="simple-question">
+                            <p>2. Что хранит временные данные?</p>
+                            <input type="text" class="answer-input" id="q2" placeholder="Введите ответ...">
+                        </div>
+                        
+                        <div class="simple-question">
+                            <p>3. Какое устройство выводит изображение на экран?</p>
+                            <input type="text" class="answer-input" id="q3" placeholder="Введите ответ...">
+                        </div>
+                    </div>
+                    
+                    <div class="task-feedback" id="task1-feedback"></div>
+                    
+                    <button class="btn btn-check" onclick="checkTask1()">
+                        <i class="fas fa-check"></i> Проверить
+                    </button>
+                </div>
+
+                <!-- Задание 2: Верно/Неверно -->
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">Задание 2</div>
+                        <div class="task-title">Верно или Неверно</div>
+                    </div>
+                    
+                    <div class="true-false-task">
+                        <div class="tf-question">
+                            <p>1. Процессор хранит все файлы компьютера.</p>
+                            <div class="tf-options">
+                                <button class="tf-btn" data-question="1" data-answer="false">Неверно</button>
+                                <button class="tf-btn" data-question="1" data-answer="true">Верно</button>
+                            </div>
+                        </div>
+                        
+                        <div class="tf-question">
+                            <p>2. Клавиатура - это устройство ввода.</p>
+                            <div class="tf-options">
+                                <button class="tf-btn" data-question="2" data-answer="false">Неверно</button>
+                                <button class="tf-btn" data-question="2" data-answer="true">Верно</button>
+                            </div>
+                        </div>
+                        
+                        <div class="tf-question">
+                            <p>3. Монитор подключается к сокету процессора.</p>
+                            <div class="tf-options">
+                                <button class="tf-btn" data-question="3" data-answer="false">Неверно</button>
+                                <button class="tf-btn" data-question="3" data-answer="true">Верно</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-feedback" id="task2-feedback"></div>
+                    
+                    <button class="btn btn-check" onclick="checkTask2()">
+                        <i class="fas fa-check"></i> Проверить
+                    </button>
+                </div>
+
+                <!-- Задание 3: Подбери пару -->
+                <div class="task-card">
+                    <div class="task-header">
+                        <div class="task-number">Задание 3</div>
+                        <div class="task-title">Подбери пару</div>
+                    </div>
+                    
+                    <div class="matching-simple">
+                        <div class="match-left">
+                            <div class="match-item" data-match="1">Процессор</div>
+                            <div class="match-item" data-match="2">RAM</div>
+                            <div class="match-item" data-match="3">Видеокарта</div>
+                        </div>
+                        
+                        <div class="match-right">
+                            <div class="match-item" data-match="b">Обработка графики</div>
+                            <div class="match-item" data-match="a">Выполнение вычислений</div>
+                            <div class="match-item" data-match="c">Временная память</div>
+                        </div>
+                    </div>
+                    
+                    <div class="match-instructions">
+                        <p>Выберите элемент слева, затем элемент справа</p>
+                    </div>
+                    
+                    <div class="task-feedback" id="task3-feedback"></div>
+                    
+                    <button class="btn btn-check" onclick="checkTask3()">
+                        <i class="fas fa-check"></i> Проверить
+                    </button>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script src="test-script.js"></script>
