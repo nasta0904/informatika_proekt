@@ -35,269 +35,6 @@
 
             <!-- Контейнер для вопросов -->
             <div class="questions-container" id="questions-container">
-
-
-<!-- Практические задания -->
-<section class="practical-tasks" id="practical-tasks">
-    <h2 class="section-title">
-        <i class="fas fa-tasks"></i>
-        Практические задания
-    </h2>
-    
-    <div class="tasks-container">
-        <!-- Задание 1: Сборка ПК -->
-        <div class="task-card" id="task1">
-            <div class="task-header">
-                <div class="task-number">Задание 1</div>
-                <div class="task-title">Собери виртуальный ПК</div>
-                <div class="task-points">+30 баллов</div>
-            </div>
-            
-            <div class="task-description">
-                <p>Перетащи компоненты в правильные места на материнской плате:</p>
-            </div>
-            
-            <div class="drag-drop-container">
-                <!-- Компоненты для перетаскивания -->
-                <div class="components-pool">
-                    <div class="draggable-component" data-component="cpu" draggable="true">
-                        <i class="fas fa-microchip"></i>
-                        <span>Процессор</span>
-                    </div>
-                    <div class="draggable-component" data-component="ram" draggable="true">
-                        <i class="fas fa-memory"></i>
-                        <span>Оперативная память</span>
-                    </div>
-                    <div class="draggable-component" data-component="gpu" draggable="true">
-                        <i class="fas fa-tv"></i>
-                        <span>Видеокарта</span>
-                    </div>
-                    <div class="draggable-component" data-component="hdd" draggable="true">
-                        <i class="fas fa-hdd"></i>
-                        <span>Жёсткий диск</span>
-                    </div>
-                    <div class="draggable-component" data-component="psu" draggable="true">
-                        <i class="fas fa-bolt"></i>
-                        <span>Блок питания</span>
-                    </div>
-                </div>
-                
-                <!-- Материнская плата -->
-                <div class="motherboard">
-                    <div class="mb-slot" data-slot="cpu" id="cpu-slot">
-                        <div class="slot-label">Сокет процессора</div>
-                    </div>
-                    <div class="mb-slot" data-slot="ram" id="ram-slot">
-                        <div class="slot-label">Слоты RAM</div>
-                    </div>
-                    <div class="mb-slot" data-slot="gpu" id="gpu-slot">
-                        <div class="slot-label">PCI-E для видеокарты</div>
-                    </div>
-                    <div class="mb-slot" data-slot="hdd" id="hdd-slot">
-                        <div class="slot-label">SATA для накопителей</div>
-                    </div>
-                    <div class="mb-slot" data-slot="psu" id="psu-slot">
-                        <div class="slot-label">Разъём питания</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="task-feedback" id="task1-feedback"></div>
-            
-            <button class="btn btn-check" onclick="checkTask1()">
-                <i class="fas fa-check"></i> Проверить
-            </button>
-        </div>
-
-        <!-- Задание 2: Сопоставление -->
-        <div class="task-card" id="task2">
-            <div class="task-header">
-                <div class="task-number">Задание 2</div>
-                <div class="task-title">Сопоставь устройство и его функцию</div>
-                <div class="task-points">+25 баллов</div>
-            </div>
-            
-            <div class="task-description">
-                <p>Соедини линией устройства с их правильными функциями:</p>
-            </div>
-            
-            <div class="matching-container">
-                <div class="matching-column">
-                    <h4>Устройства</h4>
-                    <div class="match-item" data-match="1">CPU</div>
-                    <div class="match-item" data-match="2">RAM</div>
-                    <div class="match-item" data-match="3">GPU</div>
-                    <div class="match-item" data-match="4">PSU</div>
-                    <div class="match-item" data-match="5">HDD</div>
-                </div>
-                
-                <div class="matching-column">
-                    <h4>Функции</h4>
-                    <div class="match-item" data-match="c">Постоянное хранение данных</div>
-                    <div class="match-item" data-match="d">Обработка графики</div>
-                    <div class="match-item" data-match="e">Выполнение вычислений</div>
-                    <div class="match-item" data-match="a">Временное хранение данных</div>
-                    <div class="match-item" data-match="b">Обеспечение питанием</div>
-                </div>
-            </div>
-            
-            <div class="connections-container" id="connections-container">
-                <!-- Здесь будут линии соединения -->
-            </div>
-            
-            <div class="task-feedback" id="task2-feedback"></div>
-            
-            <button class="btn btn-check" onclick="checkTask2()">
-                <i class="fas fa-check"></i> Проверить
-            </button>
-        </div>
-
-        <!-- Задание 3: Кроссворд -->
-        <div class="task-card" id="task3">
-            <div class="task-header">
-                <div class="task-number">Задание 3</div>
-                <div class="task-title">Компьютерный кроссворд</div>
-                <div class="task-points">+35 баллов</div>
-            </div>
-            
-            <div class="task-description">
-                <p>Разгадай кроссворд по теме "Устройство компьютера":</p>
-            </div>
-            
-            <div class="crossword-container">
-                <!-- Вопросы -->
-                <div class="crossword-questions">
-                    <h4>По горизонтали:</h4>
-                    <ol>
-                        <li><span class="question-number">1.</span> "Мозг" компьютера (7 букв)</li>
-                        <li><span class="question-number">3.</span> Внешние устройства компьютера (14 букв)</li>
-                        <li><span class="question-number">5.</span> Устройство для печати (7 букв)</li>
-                    </ol>
-                    
-                    <h4>По вертикали:</h4>
-                    <ol>
-                        <li><span class="question-number">2.</span> Основная плата компьютера (18 букв)</li>
-                        <li><span class="question-number">4.</span> Временная память (3 буквы)</li>
-                    </ol>
-                </div>
-                
-                <!-- Сетка кроссворда -->
-                <div class="crossword-grid">
-                    <div class="grid-row">
-                        <div class="grid-cell" data-cell="1-1"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="1-2"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="1-3"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="1-4"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="1-5"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="1-6"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="1-7"><input type="text" maxlength="1"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell" data-cell="2-1"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="2-2"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="2-3"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="2-4"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="2-5"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="2-6"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="2-7"><input type="text" maxlength="1"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell" data-cell="3-1"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="3-2"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="3-3"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="3-4"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="3-5"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="3-6"><input type="text" maxlength="1"></div>
-                        <div class="grid-cell" data-cell="3-7"><input type="text" maxlength="1"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="task-feedback" id="task3-feedback"></div>
-            
-            <button class="btn btn-check" onclick="checkTask3()">
-                <i class="fas fa-check"></i> Проверить кроссворд
-            </button>
-        </div>
-
-        <!-- Задание 4: Поиск ошибок -->
-        <div class="task-card" id="task4">
-            <div class="task-header">
-                <div class="task-number">Задание 4</div>
-                <div class="task-title">Найди ошибки в описании</div>
-                <div class="task-points">+20 баллов</div>
-            </div>
-            
-            <div class="task-description">
-                <p>Найди и исправь 5 ошибок в тексте:</p>
-            </div>
-            
-            <div class="error-text">
-                <p>Компьютер состоит из системного блока, монитора и клавиатуры. <span class="error-word" data-error="1">Процессор</span> отвечает за хранение данных. <span class="error-word" data-error="2">Оперативная память</span> используется для постоянного хранения файлов. <span class="error-word" data-error="3">Блок питания</span> обрабатывает графическую информацию. <span class="error-word" data-error="4">Мышь</span> является устройством вывода. <span class="error-word" data-error="5">Принтер</span> используется для ввода информации.</p>
-            </div>
-            
-            <div class="corrections-container">
-                <h4>Исправления:</h4>
-                <div class="correction-inputs">
-                    <div class="correction-item">
-                        <span>Ошибка 1:</span>
-                        <input type="text" id="error1" placeholder="Верный термин...">
-                    </div>
-                    <div class="correction-item">
-                        <span>Ошибка 2:</span>
-                        <input type="text" id="error2" placeholder="Верный термин...">
-                    </div>
-                    <div class="correction-item">
-                        <span>Ошибка 3:</span>
-                        <input type="text" id="error3" placeholder="Верный термин...">
-                    </div>
-                    <div class="correction-item">
-                        <span>Ошибка 4:</span>
-                        <input type="text" id="error4" placeholder="Верный термин...">
-                    </div>
-                    <div class="correction-item">
-                        <span>Ошибка 5:</span>
-                        <input type="text" id="error5" placeholder="Верный термин...">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="task-feedback" id="task4-feedback"></div>
-            
-            <button class="btn btn-check" onclick="checkTask4()">
-                <i class="fas fa-check"></i> Проверить исправления
-            </button>
-        </div>
-    </div>
-</section>
-
-<!-- Панель результатов заданий -->
-<div class="tasks-results">
-    <div class="results-summary">
-        <h3><i class="fas fa-chart-line"></i> Результаты практики</h3>
-        <div class="results-grid">
-            <div class="result-item">
-                <div class="result-label">Выполнено заданий:</div>
-                <div class="result-value"><span id="tasks-completed">0</span>/4</div>
-            </div>
-            <div class="result-item">
-                <div class="result-label">Набрано баллов:</div>
-                <div class="result-value"><span id="tasks-score">0</span></div>
-            </div>
-            <div class="result-item">
-                <div class="result-label">Общий прогресс:</div>
-                <div class="result-value">
-                    <div class="mini-progress">
-                        <div class="mini-progress-fill" id="mini-progress-fill"></div>
-                    </div>
-                    <span id="tasks-progress">0%</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-                
-                
                 <!-- Вопросы будут генерироваться через JavaScript -->
             </div>
 
@@ -363,8 +100,269 @@
                 </div>
             </div>
         </section>
+
+        <!-- Практические задания -->
+        <section class="practical-tasks" id="practical-tasks">
+            <h2 class="section-title">
+                <i class="fas fa-tasks"></i>
+                Практические задания
+            </h2>
+            
+            <div class="tasks-container">
+                <!-- Задание 1: Сборка ПК -->
+                <div class="task-card" id="task1">
+                    <div class="task-header">
+                        <div class="task-number">Задание 1</div>
+                        <div class="task-title">Собери виртуальный ПК</div>
+                        <div class="task-points">+30 баллов</div>
+                    </div>
+                    
+                    <div class="task-description">
+                        <p>Перетащи компоненты в правильные места на материнской плате:</p>
+                    </div>
+                    
+                    <div class="drag-drop-container">
+                        <!-- Компоненты для перетаскивания -->
+                        <div class="components-pool">
+                            <div class="draggable-component" data-component="cpu" draggable="true">
+                                <i class="fas fa-microchip"></i>
+                                <span>Процессор</span>
+                            </div>
+                            <div class="draggable-component" data-component="ram" draggable="true">
+                                <i class="fas fa-memory"></i>
+                                <span>Оперативная память</span>
+                            </div>
+                            <div class="draggable-component" data-component="gpu" draggable="true">
+                                <i class="fas fa-tv"></i>
+                                <span>Видеокарта</span>
+                            </div>
+                            <div class="draggable-component" data-component="hdd" draggable="true">
+                                <i class="fas fa-hdd"></i>
+                                <span>Жёсткий диск</span>
+                            </div>
+                            <div class="draggable-component" data-component="psu" draggable="true">
+                                <i class="fas fa-bolt"></i>
+                                <span>Блок питания</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Материнская плата -->
+                        <div class="motherboard">
+                            <div class="mb-slot" data-slot="cpu" id="cpu-slot">
+                                <div class="slot-label">Сокет процессора</div>
+                            </div>
+                            <div class="mb-slot" data-slot="ram" id="ram-slot">
+                                <div class="slot-label">Слоты RAM</div>
+                            </div>
+                            <div class="mb-slot" data-slot="gpu" id="gpu-slot">
+                                <div class="slot-label">PCI-E для видеокарты</div>
+                            </div>
+                            <div class="mb-slot" data-slot="hdd" id="hdd-slot">
+                                <div class="slot-label">SATA для накопителей</div>
+                            </div>
+                            <div class="mb-slot" data-slot="psu" id="psu-slot">
+                                <div class="slot-label">Разъём питания</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-feedback" id="task1-feedback"></div>
+                    
+                    <button class="btn btn-check" onclick="checkTask1()">
+                        <i class="fas fa-check"></i> Проверить
+                    </button>
+                </div>
+
+                <!-- Задание 2: Сопоставление -->
+                <div class="task-card" id="task2">
+                    <div class="task-header">
+                        <div class="task-number">Задание 2</div>
+                        <div class="task-title">Сопоставь устройство и его функцию</div>
+                        <div class="task-points">+25 баллов</div>
+                    </div>
+                    
+                    <div class="task-description">
+                        <p>Соедини линией устройства с их правильными функциями:</p>
+                    </div>
+                    
+                    <div class="matching-container">
+                        <div class="matching-column">
+                            <h4>Устройства</h4>
+                            <div class="match-item" data-match="1">CPU</div>
+                            <div class="match-item" data-match="2">RAM</div>
+                            <div class="match-item" data-match="3">GPU</div>
+                            <div class="match-item" data-match="4">PSU</div>
+                            <div class="match-item" data-match="5">HDD</div>
+                        </div>
+                        
+                        <div class="matching-column">
+                            <h4>Функции</h4>
+                            <div class="match-item" data-match="c">Постоянное хранение данных</div>
+                            <div class="match-item" data-match="d">Обработка графики</div>
+                            <div class="match-item" data-match="e">Выполнение вычислений</div>
+                            <div class="match-item" data-match="a">Временное хранение данных</div>
+                            <div class="match-item" data-match="b">Обеспечение питанием</div>
+                        </div>
+                    </div>
+                    
+                    <div class="connections-container" id="connections-container">
+                        <!-- Здесь будут линии соединения -->
+                    </div>
+                    
+                    <div class="task-feedback" id="task2-feedback"></div>
+                    
+                    <button class="btn btn-check" onclick="checkTask2()">
+                        <i class="fas fa-check"></i> Проверить
+                    </button>
+                </div>
+
+                <!-- Задание 3: Кроссворд -->
+                <div class="task-card" id="task3">
+                    <div class="task-header">
+                        <div class="task-number">Задание 3</div>
+                        <div class="task-title">Компьютерный кроссворд</div>
+                        <div class="task-points">+35 баллов</div>
+                    </div>
+                    
+                    <div class="task-description">
+                        <p>Разгадай кроссворд по теме "Устройство компьютера":</p>
+                    </div>
+                    
+                    <div class="crossword-container">
+                        <!-- Вопросы -->
+                        <div class="crossword-questions">
+                            <h4>По горизонтали:</h4>
+                            <ol>
+                                <li><span class="question-number">1.</span> "Мозг" компьютера (7 букв)</li>
+                                <li><span class="question-number">3.</span> Внешние устройства компьютера (14 букв)</li>
+                                <li><span class="question-number">5.</span> Устройство для печати (7 букв)</li>
+                            </ol>
+                            
+                            <h4>По вертикали:</h4>
+                            <ol>
+                                <li><span class="question-number">2.</span> Основная плата компьютера (18 букв)</li>
+                                <li><span class="question-number">4.</span> Временная память (3 буквы)</li>
+                            </ol>
+                        </div>
+                        
+                        <!-- Сетка кроссворда -->
+                        <div class="crossword-grid">
+                            <div class="grid-row">
+                                <div class="grid-cell" data-cell="1-1"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="1-2"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="1-3"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="1-4"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="1-5"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="1-6"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="1-7"><input type="text" maxlength="1"></div>
+                            </div>
+                            <div class="grid-row">
+                                <div class="grid-cell" data-cell="2-1"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="2-2"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="2-3"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="2-4"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="2-5"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="2-6"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="2-7"><input type="text" maxlength="1"></div>
+                            </div>
+                            <div class="grid-row">
+                                <div class="grid-cell" data-cell="3-1"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="3-2"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="3-3"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="3-4"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="3-5"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="3-6"><input type="text" maxlength="1"></div>
+                                <div class="grid-cell" data-cell="3-7"><input type="text" maxlength="1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-feedback" id="task3-feedback"></div>
+                    
+                    <button class="btn btn-check" onclick="checkTask3()">
+                        <i class="fas fa-check"></i> Проверить кроссворд
+                    </button>
+                </div>
+
+                <!-- Задание 4: Поиск ошибок -->
+                <div class="task-card" id="task4">
+                    <div class="task-header">
+                        <div class="task-number">Задание 4</div>
+                        <div class="task-title">Найди ошибки в описании</div>
+                        <div class="task-points">+20 баллов</div>
+                    </div>
+                    
+                    <div class="task-description">
+                        <p>Найди и исправь 5 ошибок в тексте:</p>
+                    </div>
+                    
+                    <div class="error-text">
+                        <p>Компьютер состоит из системного блока, монитора и клавиатуры. <span class="error-word" data-error="1">Процессор</span> отвечает за хранение данных. <span class="error-word" data-error="2">Оперативная память</span> используется для постоянного хранения файлов. <span class="error-word" data-error="3">Блок питания</span> обрабатывает графическую информацию. <span class="error-word" data-error="4">Мышь</span> является устройством вывода. <span class="error-word" data-error="5">Принтер</span> используется для ввода информации.</p>
+                    </div>
+                    
+                    <div class="corrections-container">
+                        <h4>Исправления:</h4>
+                        <div class="correction-inputs">
+                            <div class="correction-item">
+                                <span>Ошибка 1:</span>
+                                <input type="text" id="error1" placeholder="Верный термин...">
+                            </div>
+                            <div class="correction-item">
+                                <span>Ошибка 2:</span>
+                                <input type="text" id="error2" placeholder="Верный термин...">
+                            </div>
+                            <div class="correction-item">
+                                <span>Ошибка 3:</span>
+                                <input type="text" id="error3" placeholder="Верный термин...">
+                            </div>
+                            <div class="correction-item">
+                                <span>Ошибка 4:</span>
+                                <input type="text" id="error4" placeholder="Верный термин...">
+                            </div>
+                            <div class="correction-item">
+                                <span>Ошибка 5:</span>
+                                <input type="text" id="error5" placeholder="Верный термин...">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-feedback" id="task4-feedback"></div>
+                    
+                    <button class="btn btn-check" onclick="checkTask4()">
+                        <i class="fas fa-check"></i> Проверить исправления
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Панель результатов заданий -->
+        <div class="tasks-results">
+            <div class="results-summary">
+                <h3><i class="fas fa-chart-line"></i> Результаты практики</h3>
+                <div class="results-grid">
+                    <div class="result-item">
+                        <div class="result-label">Выполнено заданий:</div>
+                        <div class="result-value"><span id="tasks-completed">0</span>/4</div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Набрано баллов:</div>
+                        <div class="result-value"><span id="tasks-score">0</span></div>
+                    </div>
+                    <div class="result-item">
+                        <div class="result-label">Общий прогресс:</div>
+                        <div class="result-value">
+                            <div class="mini-progress">
+                                <div class="mini-progress-fill" id="mini-progress-fill"></div>
+                            </div>
+                            <span id="tasks-progress">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="test-questions.js"></script>
+    <script src="test-script.js"></script>
 </body>
 </html>
