@@ -1,0 +1,347 @@
+:root {
+    --primary: #4361ee;
+    --primary-dark: #3a0ca3;
+    --secondary: #f72585;
+    --success: #4cc9f0;
+    --danger: #f94144;
+    --warning: #f8961e;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --gray: #6c757d;
+    --light-gray: #e9ecef;
+    --radius: 16px;
+    --radius-sm: 8px;
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(135deg, #f5f7ff 0%, #eef2ff 100%);
+    color: var(--dark);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Хедер теста */
+.test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.test-progress {
+    flex: 1;
+    max-width: 500px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: var(--light-gray);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    width: 10%;
+    height: 100%;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.score-display {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.score-display i {
+    color: #ffd700;
+}
+
+/* Секция теста */
+.test-section {
+    background: white;
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.test-title {
+    text-align: center;
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.test-title i {
+    color: var(--secondary);
+}
+
+.test-subtitle {
+    text-align: center;
+    color: var(--gray);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Контейнер вопросов */
+.questions-container {
+    margin: 2rem 0;
+}
+
+.question-card {
+    background: var(--light);
+    border-radius: var(--radius);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid var(--primary);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.question-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.question-number {
+    background: var(--primary);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.question-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.5;
+}
+
+/* Варианты ответов */
+.options-container {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.option {
+    padding: 1rem 1.5rem;
+    background: white;
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.option:hover {
+    border-color: var(--primary);
+    background: rgba(67, 97, 238, 0.05);
+    transform: translateX(5px);
+}
+
+.option.selected {
+    border-color: var(--primary);
+    background: rgba(67, 97, 238, 0.1);
+}
+
+.option.correct {
+    border-color: var(--success);
+    background: rgba(76, 201, 240, 0.1);
+}
+
+.option.incorrect {
+    border-color: var(--danger);
+    background: rgba(249, 65, 68, 0.1);
+}
+
+.option input {
+    display: none;
+}
+
+.option-check {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--gray);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.option.selected .option-check {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.option.selected .option-check::after {
+    content: '✓';
+    color: white;
+    font-size: 0.8rem;
+}
+
+.option-text {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* Панель управления */
+.test-controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--light-gray);
+}
+
+.btn {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+    background: rgba(67, 97, 238, 0.05);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success), #38b6ff);
+    color: white;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 201, 240, 0.3);
+}
+
+/* Результаты теста */
+.results-container {
+    animation: fadeIn 0.8s ease;
+}
+
+.result-card {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(247, 37, 133, 0.05));
+    border-radius: var(--radius);
+}
+
+.result-icon {
+    font-size: 4rem;
+    color: #ffd700;
+    margin-bottom: 1rem;
+}
+
+#result-title {
+    color: var(--primary-dark);
+    margin-bottom: 2rem;
+}
+
+.score-circle {
+    margin: 2rem auto;
+    position: relative;
+    width: 120px;
+    height: 120px;
+}
+
+.circle-progress {
+    position: relative;
+}
+
+.circle-progress svg {
+    transform: rotate(-90deg);
+}
+
+.circle-bg {
+    fill: none;
+    stroke: var(--light-gray);
+    stroke-width: 8;
+}
+
+.circle-fill {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 339;
+    stroke-dashoffset: 339;
