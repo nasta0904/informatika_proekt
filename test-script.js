@@ -470,103 +470,94 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Задание 3: Кроссворд
     const crosswordAnswers = {
-        horizontal1: ['П', 'Р', 'О', 'Ц', 'Е', 'С', 'С', 'О', 'Р'],
-        horizontal2: ['П', 'Е', 'Р', 'И', 'Ф', 'Е', 'Р', 'И', 'Й', 'Н', 'Ы', 'Е'],
-        horizontal3: ['П', 'Р', 'И', 'Н', 'Т', 'Е', 'Р'],
-        vertical1: ['М', 'А', 'Т', 'Е', 'Р', 'И', 'Н', 'С', 'К', 'А', 'Я', 'П', 'Л', 'А', 'Т', 'А'],
-        vertical2: ['Р', 'А', 'М']
+        // Горизонтальные слова
+        1: { // "Мозг" компьютера (7 букв)
+            word: "ПРОЦЕССОР",
+            positions: [[1,1], [1,2], [1,3], [1,4], [1,5], [1,6], [1,7]]
+        },
+        3: { // Внешние устройства компьютера (14 букв)
+            word: "ПЕРИФЕРИЙНЫЕ",
+            positions: [[2,1], [2,2], [2,3], [2,4], [2,5], [2,6], [2,7]]
+        },
+        5: { // Устройство для печати (7 букв)
+            word: "ПРИНТЕР",
+            positions: [[3,1], [3,2], [3,3], [3,4], [3,5], [3,6], [3,7]]
+        },
+        // Вертикальные слова
+        2: { // Основная плата компьютера (18 букв)
+            word: "МАТЕРИНСКАЯПЛАТА",
+            positions: [[1,1], [2,1], [3,1]]
+        },
+        4: { // Временная память (3 буквы)
+            word: "ОЗУ",
+            positions: [[1,4], [2,4], [3,4]]
+        }
     };
 
     window.checkTask3 = function() {
-        const grid = [
-            [1,1], [1,2], [1,3], [1,4], [1,5], [1,6], [1,7],
-            [2,1], [2,2], [2,3], [2,4], [2,5], [2,6], [2,7],
-            [3,1], [3,2], [3,3], [3,4], [3,5], [3,6], [3,7]
-        ];
-        
-        let correctCount = 0;
-        let totalCells = 0;
-        
-        // Собираем значения из всех ячеек
+        // Собираем все ответы пользователя
         const userAnswers = {};
-        grid.forEach(([row, col]) => {
-            const input = document.querySelector(`[data-cell="${row}-${col}"] input`);
-            if (input) {
-                userAnswers[`${row}-${col}`] = input.value.toUpperCase();
-                if (input.value.trim() !== '') totalCells++;
+        let totalCells = 0;
+        let correctCells = 0;
+        
+        // Сначала собираем все введенные буквы
+        const allCells = document.querySelectorAll('.grid-cell');
+        allCells.forEach(cell => {
+            const cellId = cell.dataset.cell;
+            const input = cell.querySelector('input');
+            const value = input.value.trim().toUpperCase();
+            
+            if (value) {
+                userAnswers[cellId] = value;
+                totalCells++;
             }
+            
+            // Сбрасываем подсветку
+            input.classList.remove('correct', 'incorrect');
         });
         
-        // Проверяем каждое слово
-        const horizontal1Cells = ['1-1', '1-2', '1-3', '1-4', '1-5', '1-6', '1-7'];
-        const horizontal2Cells = ['2-1', '2-2', '2-3', '2-4', '2-5', '2-6', '2-7'];
-        const horizontal3Cells = ['3-1', '3-2', '3-3', '3-4', '3-5', '3-6', '3-7'];
-        const vertical1Cells = ['1-1', '2-1', '3-1'];
-        const vertical2Cells = ['1-4', '2-4', '3-4'];
-        
-        // Проверка горизонтальных слов (упрощенная версия)
-        const horizontal1Correct = checkWord(horizontal1Cells, userAnswers, crosswordAnswers.horizontal1.slice(0, 7));
-        const horizontal2Correct = checkWord(horizontal2Cells, userAnswers, crosswordAnswers.horizontal2.slice(0, 7));
-        const horizontal3Correct = checkWord(horizontal3Cells, userAnswers, crosswordAnswers.horizontal3);
-        
-        // Проверка вертикальных слов
-        const vertical1Correct = checkWord(vertical1Cells, userAnswers, crosswordAnswers.vertical1.slice(0, 3));
-        const vertical2Correct = checkWord(vertical2Cells, userAnswers, crosswordAnswers.vertical2);
-        
-        // Подсчет правильных
-        if (horizontal1Correct) correctCount += horizontal1Cells.filter(cell => userAnswers[cell]).length;
-        if (horizontal2Correct) correctCount += horizontal2Cells.filter(cell => userAnswers[cell]).length;
-        if (horizontal3Correct) correctCount += horizontal3Cells.filter(cell => userAnswers[cell]).length;
-        if (vertical1Correct) correctCount += vertical1Cells.filter(cell => userAnswers[cell]).length;
-        if (vertical2Correct) correctCount += vertical2Cells.filter(cell => userAnswers[cell]).length;
-        
-        // Подсветка правильных/неправильных ячеек
-        grid.forEach(([row, col]) => {
-            const input = document.querySelector(`[data-cell="${row}-${col}"] input`);
-            if (input) {
-                input.classList.remove('correct', 'incorrect');
-                
-                // Проверяем, входит ли ячейка в какое-либо правильное слово
+        // Проверяем каждое слово отдельно
+        Object.keys(crosswordAnswers).forEach(key => {
+            const wordData = crosswordAnswers[key];
+            const word = wordData.word;
+            const positions = wordData.positions;
+            
+            // Для каждого слова проверяем, совпадают ли буквы
+            for (let i = 0; i < positions.length; i++) {
+                const [row, col] = positions[i];
                 const cellId = `${row}-${col}`;
-                let isCorrect = false;
+                const input = document.querySelector(`[data-cell="${cellId}"] input`);
                 
-                if (horizontal1Cells.includes(cellId) && horizontal1Correct) isCorrect = true;
-                if (horizontal2Cells.includes(cellId) && horizontal2Correct) isCorrect = true;
-                if (horizontal3Cells.includes(cellId) && horizontal3Correct) isCorrect = true;
-                if (vertical1Cells.includes(cellId) && vertical1Correct) isCorrect = true;
-                if (vertical2Cells.includes(cellId) && vertical2Correct) isCorrect = true;
-                
-                if (isCorrect && userAnswers[cellId]) {
-                    input.classList.add('correct');
-                } else if (userAnswers[cellId]) {
-                    input.classList.add('incorrect');
+                if (input) {
+                    const userLetter = userAnswers[cellId] || '';
+                    const correctLetter = word[i] || '';
+                    
+                    if (userLetter === correctLetter && userLetter !== '') {
+                        input.classList.add('correct');
+                        correctCells++;
+                    } else if (userLetter !== '' && userLetter !== correctLetter) {
+                        input.classList.add('incorrect');
+                    }
                 }
             }
         });
         
-        if (correctCount === totalCells && totalCells > 0) {
-            addTaskPoints(3, 35);
-            showFeedback('task3-feedback', 'Поздравляем! Кроссворд разгадан полностью! +35 баллов', 'success');
-        } else if (totalCells === 0) {
+        if (totalCells === 0) {
             showFeedback('task3-feedback', 'Заполните хотя бы одну клетку кроссворда.', 'error');
+            return;
+        }
+        
+        // Вычисляем процент правильности
+        const correctPercentage = Math.round((correctCells / totalCells) * 100);
+        
+        // Для демонстрации - если заполнено более 80% правильно, считаем успешным
+        if (correctPercentage >= 80 && totalCells >= 5) {
+            addTaskPoints(3, 35);
+            showFeedback('task3-feedback', `Отлично! Кроссворд разгадан на ${correctPercentage}%! +35 баллов`, 'success');
         } else {
-            const percentage = Math.round((correctCount / totalCells) * 100);
-            showFeedback('task3-feedback', `Правильно заполнено ${correctCount} из ${totalCells} клеток (${percentage}%).`, 'error');
+            showFeedback('task3-feedback', `Правильно заполнено ${correctCells} из ${totalCells} клеток (${correctPercentage}%).`, 'error');
         }
     };
-
-    function checkWord(cells, userAnswers, correctWord) {
-        for (let i = 0; i < cells.length; i++) {
-            const userLetter = userAnswers[cells[i]] || '';
-            const correctLetter = correctWord[i] || '';
-            
-            // Если ячейка заполнена и буква неверная
-            if (userLetter && userLetter !== correctLetter) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     // Задание 4: Поиск ошибок
     const errorCorrections = {
@@ -634,3 +625,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 });
+
+// Глобальная функция для форматирования длинного текста в вариантах ответов
+function formatOptionText(text) {
+    // Если текст длинный, разбиваем его на несколько строк
+    if (text.length > 60) {
+        const words = text.split(' ');
+        let lines = [];
+        let currentLine = '';
+        
+        words.forEach(word => {
+            if ((currentLine + ' ' + word).length > 60) {
+                lines.push(currentLine.trim());
+                currentLine = word;
+            } else {
+                currentLine += (currentLine ? ' ' : '') + word;
+            }
+        });
+        
+        if (currentLine) {
+            lines.push(currentLine.trim());
+        }
+        
+        return lines.join('<br>');
+    }
+    
+    return text;
+}
