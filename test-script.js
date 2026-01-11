@@ -1,4 +1,4 @@
-// Вопросы для теста
+// Вопросы для теста - правильные ответы на РАЗНЫХ строках
 const questions = [
     {
         id: 1,
@@ -9,112 +9,112 @@ const questions = [
             "Внешнее устройство хранения данных",
             "Источник бесперебойного питания"
         ],
-        correctAnswer: 0
+        correctAnswer: 0 // Первая строка
     },
     {
         id: 2,
         question: "Какую функцию выполняет материнская плата?",
         options: [
-            "Соединяет все компоненты компьютера между собой",
             "Обрабатывает графическую информацию",
+            "Соединяет все компоненты компьютера между собой",
             "Хранит временные данные",
             "Обеспечивает питание компонентов"
         ],
-        correctAnswer: 0
+        correctAnswer: 1 // Вторая строка
     },
     {
         id: 3,
         question: "Что такое CPU и какую функцию он выполняет?",
         options: [
-            "Центральный процессор - выполняет вычисления и обработку данных",
             "Графический процессор - обрабатывает изображения",
             "Блок питания - обеспечивает питание",
+            "Центральный процессор - выполняет вычисления и обработку данных",
             "Оперативная память - хранит временные данные"
         ],
-        correctAnswer: 0
+        correctAnswer: 2 // Третья строка
     },
     {
         id: 4,
         question: "Чем отличается RAM от HDD?",
         options: [
-            "RAM - временное хранилище, HDD - постоянное",
             "RAM - постоянное хранилище, HDD - временное",
             "Оба являются временными хранилищами",
-            "Оба являются постоянными хранилищами"
+            "Оба являются постоянными хранилищами",
+            "RAM - временное хранилище, HDD - постоянное"
         ],
-        correctAnswer: 0
+        correctAnswer: 3 // Четвертая строка
     },
     {
         id: 5,
         question: "Что такое PSU и зачем он нужен?",
         options: [
-            "Блок питания - преобразует сетевое напряжение",
             "Процессор - выполняет вычисления",
             "Видеокарта - обрабатывает графику",
+            "Блок питания - преобразует сетевое напряжение",
             "Система охлаждения - охлаждает компоненты"
         ],
-        correctAnswer: 0
+        correctAnswer: 2 // Третья строка
     },
     {
         id: 6,
         question: "Какое устройство отвечает за обработку графической информации?",
         options: [
-            "Видеокарта (GPU)",
             "Процессор (CPU)",
             "Оперативная память (RAM)",
+            "Видеокарта (GPU)",
             "Материнская плата"
         ],
-        correctAnswer: 0
+        correctAnswer: 2 // Третья строка
     },
     {
         id: 7,
         question: "Какие устройства относятся к устройствам ввода?",
         options: [
-            "Клавиатура, мышь, сканер",
             "Монитор, принтер, колонки",
+            "Клавиатура, мышь, сканер",
             "Флешки, внешние диски",
             "Веб-камера, микрофон"
         ],
-        correctAnswer: 0
+        correctAnswer: 1 // Вторая строка
     },
     {
         id: 8,
         question: "Что такое периферийные устройства?",
         options: [
-            "Внешние устройства, подключаемые к компьютеру",
             "Внутренние компоненты системного блока",
             "Только устройства вывода информации",
+            "Внешние устройства, подключаемые к компьютеру",
             "Только устройства хранения данных"
         ],
-        correctAnswer: 0
+        correctAnswer: 2 // Третья строка
     },
     {
         id: 9,
         question: "Какие устройства относятся к сетевым?",
         options: [
-            "Модем, роутер, сетевая карта",
             "Клавиатура, мышь, джойстик",
             "Монитор, принтер, сканер",
-            "Колонки, наушники, микрофон"
+            "Колонки, наушники, микрофон",
+            "Модем, роутер, сетевая карта"
         ],
-        correctAnswer: 0
+        correctAnswer: 3 // Четвертая строка
     },
     {
         id: 10,
         question: "Какую функцию выполняют внешние HDD/SSD?",
         options: [
-            "Перенос, резервное копирование и хранение данных",
             "Обработка графической информации",
             "Охлаждение компонентов компьютера",
-            "Ввод текстовой информации"
+            "Ввод текстовой информации",
+            "Перенос, резервное копирование и хранение данных"
         ],
-        correctAnswer: 0
+        correctAnswer: 3 // Четвертая строка
     }
 ];
 
 // Основной скрипт теста
 document.addEventListener('DOMContentLoaded', function() {
-    // Элементы DOM
+    // Элементы DOM для теста
     const questionsContainer = document.getElementById('questions-container');
     const progressFill = document.getElementById('progress-fill');
     const currentQuestionEl = document.getElementById('current-question');
@@ -152,10 +152,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const optionClass = isSelected ? 'option selected' : 'option';
             
             optionsHtml += `
-                <div class="${optionClass}" data-index="${index}" onclick="selectOption(${index})">
-                    <div class="option-check"></div>
-                    <div class="option-text">${option}</div>
-                </div>
+                <button class="${optionClass}" data-index="${index}" onclick="selectOption(${index})">
+                    <span class="option-check"></span>
+                    <span class="option-text">${option}</span>
+                </button>
             `;
         });
 
@@ -201,106 +201,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Навигация
     function updateNavigation() {
-        prevBtn.disabled = currentQuestionIndex === 0;
-        
-        if (currentQuestionIndex === questions.length - 1) {
-            nextBtn.style.display = 'none';
-            submitBtn.style.display = 'flex';
-        } else {
-            nextBtn.style.display = 'flex';
-            submitBtn.style.display = 'none';
-        }
-    }
-
-    // Следующий вопрос
-    nextBtn.addEventListener('click', function() {
-        if (currentQuestionIndex < questions.length - 1) {
-            currentQuestionIndex++;
-            renderQuestion();
-            updateNavigation();
-        }
-    });
-
-    // Предыдущий вопрос
-    prevBtn.addEventListener('click', function() {
-        if (currentQuestionIndex > 0) {
-            currentQuestionIndex--;
-            renderQuestion();
-            updateNavigation();
-        }
-    });
-
-    // Завершение теста
-    submitBtn.addEventListener('click', function() {
-        calculateScore();
-        showResults();
-    });
-
-    // Расчет результатов
-    function calculateScore() {
-        score = 0;
-        questions.forEach((question, index) => {
-            if (userAnswers[index] === question.correctAnswer) {
-                score++;
-            }
-        });
-        
-        scoreEl.textContent = score * 10;
-    }
-
-    // Показать результаты
-    function showResults() {
-        const percentage = Math.round((score / questions.length) * 100);
-        
-        // Обновляем результаты
-        finalScoreEl.textContent = percentage;
-        correctAnswersEl.textContent = `${score}/${questions.length}`;
-        
-        // Определяем уровень знаний
-        let level, levelClass;
-        if (percentage >= 90) {
-            level = "Эксперт";
-            levelClass = "expert";
-        } else if (percentage >= 70) {
-            level = "Продвинутый";
-            levelClass = "advanced";
-        } else if (percentage >= 50) {
-            level = "Средний";
-            levelClass = "intermediate";
-        } else {
-            level = "Новичок";
-            levelClass = "beginner";
-        }
-        
-        knowledgeLevelEl.textContent = level;
-        knowledgeLevelEl.className = `detail-value ${levelClass}`;
-        
-        // Анимируем прогресс-круг
-        const circleFill = document.querySelector('.circle-fill');
-        const circumference = 2 * Math.PI * 54;
-        const offset = circumference - (percentage / 100) * circumference;
-        circleFill.style.strokeDashoffset = offset;
-        
-        // Показываем результаты
-        questionsContainer.style.display = 'none';
-        testControls.style.display = 'none';
-        resultsContainer.style.display = 'block';
-    }
-
-    // Перезапуск теста
-    restartBtn.addEventListener('click', function() {
-        currentQuestionIndex = 0;
-        userAnswers = new Array(questions.length).fill(null);
-        score = 0;
-        
-        scoreEl.textContent = '0';
-        questionsContainer.style.display = 'block';
-        testControls.style.display = 'flex';
-        resultsContainer.style.display = 'none';
-        
-        initTest();
-    });
-
-    // Инициализируем тест
-    initTest();
-});
+        prevBtn.dis
