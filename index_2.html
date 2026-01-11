@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Устройство компьютера-обучение</title>
-      <link rel="stylesheet" href="my2.css">
+    <title>Устройство компьютера - обучение</title>
+    <!-- Подключаем FontAwesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="my2.css">
 </head>
 
 <body>
     <div class="container">
         <!-- Главная секция -->
         <section class="hero-section">
-            <h2 class="section-title">Что ты узнаешь</h2>
+            <h1 class="section-title">Что ты узнаешь</h1>
             
             <div class="components-grid">
                 <!-- Карточка 1: Основные компоненты ПК -->
@@ -48,13 +50,34 @@
             </div>
 
             <!-- Кнопка перехода -->
-            <div class="hero-buttons">
-                <a href="index_3.html" class="btn btn-primary">
-                    <i class="fas fa-arrow-right"></i>Дальше</a>
+            <div class="btn-container">
+                <a href="index_3.html" class="btn">
+                    <i class="fas fa-arrow-right"></i>Дальше
+                </a>
             </div>
         </section>
-        
-        
     </div>
+    
+    <script>
+        // Скрипт для анимации при прокрутке
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-on-scroll');
+                    }
+                });
+            }, observerOptions);
+            
+            // Наблюдаем за всеми карточками
+            document.querySelectorAll('.component-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 </html>
