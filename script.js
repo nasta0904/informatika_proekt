@@ -249,3 +249,21 @@ window.addEventListener('error', function(e) {
     console.error('Произошла ошибка:', e.message);
     showNotification('Произошла ошибка при загрузке страницы', 'error');
 });
+     document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-on-scroll');
+                    }
+                });
+            }, observerOptions);
+            
+            // Наблюдаем за всеми карточками
+            document.querySelectorAll('.component-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
