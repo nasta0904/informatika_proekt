@@ -201,4 +201,323 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Навигация
     function updateNavigation() {
-        prevBtn.dis
+        prevBtn.disabled = currentQuestionIndex === 0;
+        
+        if (currentQuestionIndex === questions.length - 1) {
+            nextBtn.style.display = 'none';
+            submitBtn.style.display = 'flex';
+        } else {
+            nextBtn.style.display = 'flex';
+            submitBtn.style.display = 'none';
+        }
+    }
+
+    // Следующий вопрос
+    nextBtn.addEventListener('click', function() {
+        if (currentQuestionIndex < questions.length - 1) {
+            currentQuestionIndex++;
+            renderQuestion();
+            updateNavigation();
+        }
+    });
+
+    // Предыдущий вопрос
+    prevBtn.addEventListener('click', function() {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            renderQuestion();
+            updateNavigation();
+        }
+    });
+
+    // Завершение теста
+    submitBtn.addEventListener('click', function() {
+        calculateScore();
+        showResults();
+    });
+
+    // Расчет результатов
+    function calculateScore() {
+        score = 0;
+        questions.forEach((question, index) => {
+            if (userAnswers[index] === question.correctAnswer) {
+                score++;
+            }
+        });
+        
+        scoreEl.textContent = score * 10;
+    }
+
+    // Показать результаты
+    function showResults() {
+        const percentage = Math.round((score / questions.length) * 100);
+        
+        // Обновляем результаты
+        finalScoreEl.textContent = percentage;
+        correctAnswersEl.textContent = `${score}/${questions.length}`;
+        
+        // Определяем уровень знаний
+        let level, levelClass;
+        if (percentage >= 90) {
+            level = "Эксперт";
+            levelClass = "expert";
+        } else if (percentage >= 70) {
+            level = "Продвинутый";
+            levelClass = "advanced";
+        } else if (percentage >= 50) {
+            level = "Средний";
+            levelClass = "intermediate";
+        } else {
+            level = "Новичок";
+            levelClass = "beginner";
+        }
+        
+        knowledgeLevelEl.textContent = level;
+        knowledgeLevelEl.className = `detail-value ${levelClass}`;
+        
+        // Анимируем прогресс-круг
+        const circleFill = document.querySelector('.circle-fill');
+        const circumference = 2 * Math.PI * 54;
+        const offset = circumference - (percentage / 100) * circumference;
+        circleFill.style.strokeDashoffset = offset;
+        
+        // Показываем результаты
+        questionsContainer.style.display = 'none';
+        testControls.style.display = 'none';
+        resultsContainer.style.display = 'block';
+    }
+
+    // Перезапуск теста
+    restartBtn.addEventListener('click', function() {
+        currentQuestionIndex = 0;
+        userAnswers = new Array(questions.length).fill(null);
+        score = 0;
+        
+        scoreEl.textContent = '0';
+        questionsContainer.style.display = 'block';
+        testControls.style.display = 'flex';
+        resultsContainer.style.display = 'none';
+        
+        initTest();
+    });
+
+    // Инициализируем тест
+    initTest();
+
+    // ====================================
+    // ПРАКТИЧЕСКИЕ ЗАДАНИЯ
+    // ====================================
+
+    // Инициализация заданий
+    initTrueFalseTask();
+    initMatchingTask();
+
+    // Функция для показа фидбека
+    window.showFeedback = function(elementId, message, type) {
+        const element = document.getElementById(elementId);
+        element.textContent = message;
+        element.className = 'task-feedback show ' + type;
+        
+        // Автоматически скрыть через 5 секунд
+        setTimeout(() => {
+            element.className = 'task-feedback';
+        }, 5000);
+    };
+
+    // Задание 1: Короткие вопросы
+    window.checkTask1 = function() {
+        const answers = {
+            q1: 'процессор',
+            q2: 'оперативная память',
+            q3: 'монитор'
+        };
+        
+        let correctCount = 0;
+        const totalQuestions = 3;
+        
+        for (let i = 1; i <= totalQuestions; i++) {
+            const input = document.getElementById(`q${i}`);
+            const userAnswer = input.value.trim().toLowerCase();
+            const correctAnswer = answers[`q${i}`];
+            
+            input.classList.remove('correct', 'incorrect');
+            
+            if (userAnswer === correctAnswer) {
+                input.classList.add('correct');
+                correctCount++;
+            } else if (userAnswer !== '') {
+                input.classList.add('incorrect');
+            }
+        }
+        
+        if (correctCount === totalQuestions) {
+            showFeedback('task1-feedback', 'Отлично! Все ответы правильные!', 'success');
+        } else {
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            showFeedback('task1-feedback', `Правильно ${correctCount} из ${totalQuestions} (${percentage}%).`, 'error');
+        }
+    };
+
+    // Задание 2: Верно/Неверно
+    function initTrueFalseTask() {
+        const tfButtons = document.querySelectorAll('.tf-btn');
+        
+        tfButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const questionNum = this.dataset.question;
+                
+                // Снимаем выделение с других кнопок этого вопроса
+                const otherButtons = document.querySelectorAll(`.tf-btn[data-question="${questionNum}"]`);
+                otherButtons.forEach(btn => {
+                    btn.classList.remove('selected-true', 'selected-false');
+                });
+                
+                // Выделяем нажатую кнопку
+                if (this.dataset.answer === 'true') {
+                    this.classList.add('selected-true');
+                } else {
+                    this.classList.add('selected-false');
+                }
+            });
+        });
+    }
+
+    window.checkTask2 = function() {
+        const correctAnswers = {
+            1: 'false',  // Процессор НЕ хранит файлы
+            2: 'true',   // Клавиатура - устройство ввода
+            3: 'false'   // Монитор НЕ подключается к сокету процессора
+        };
+        
+        let correctCount = 0;
+        const totalQuestions = 3;
+        
+        for (let i = 1; i <= totalQuestions; i++) {
+            const selectedButton = document.querySelector(`.tf-btn[data-question="${i}"].selected-true, .tf-btn[data-question="${i}"].selected-false`);
+            
+            if (selectedButton && selectedButton.dataset.answer === correctAnswers[i]) {
+                correctCount++;
+                selectedButton.classList.remove('selected-true', 'selected-false');
+                selectedButton.classList.add(correctAnswers[i] === 'true' ? 'selected-true' : 'selected-false');
+            }
+        }
+        
+        if (correctCount === totalQuestions) {
+            showFeedback('task2-feedback', 'Отлично! Все ответы верны!', 'success');
+        } else {
+            const percentage = Math.round((correctCount / totalQuestions) * 100);
+            showFeedback('task2-feedback', `Правильно ${correctCount} из ${totalQuestions} (${percentage}%).`, 'error');
+        }
+    };
+
+    // Задание 3: Подбери пару
+    function initMatchingTask() {
+        const matchItems = document.querySelectorAll('.match-item');
+        let selectedLeft = null;
+        let selectedRight = null;
+        
+        const correctMatches = {
+            '1': 'a', // Процессор -> Выполнение вычислений
+            '2': 'c', // RAM -> Временная память
+            '3': 'b'  // Видеокарта -> Обработка графики
+        };
+        
+        matchItems.forEach(item => {
+            item.addEventListener('click', function() {
+                // Определяем, левый это элемент или правый
+                const parent = this.parentElement;
+                const isLeft = parent.classList.contains('match-left');
+                
+                // Снимаем выделение с элементов той же колонки
+                const itemsInColumn = parent.querySelectorAll('.match-item');
+                itemsInColumn.forEach(i => i.classList.remove('selected'));
+                
+                // Выделяем текущий элемент
+                this.classList.add('selected');
+                
+                // Сохраняем выбор
+                if (isLeft) {
+                    selectedLeft = this.dataset.match;
+                } else {
+                    selectedRight = this.dataset.match;
+                }
+                
+                // Проверяем, если выбраны оба
+                if (selectedLeft && selectedRight) {
+                    checkMatchPair(selectedLeft, selectedRight);
+                    selectedLeft = null;
+                    selectedRight = null;
+                }
+            });
+        });
+        
+        function checkMatchPair(left, right) {
+            const leftItems = document.querySelectorAll('.match-left .match-item');
+            const rightItems = document.querySelectorAll('.match-right .match-item');
+            
+            if (correctMatches[left] === right) {
+                // Правильное сопоставление
+                leftItems.forEach(item => {
+                    if (item.dataset.match === left) {
+                        item.classList.remove('selected');
+                        item.classList.add('correct');
+                    }
+                });
+                
+                rightItems.forEach(item => {
+                    if (item.dataset.match === right) {
+                        item.classList.remove('selected');
+                        item.classList.add('correct');
+                    }
+                });
+                
+                // Проверяем все ли сопоставлены
+                checkAllMatched();
+            } else {
+                // Неправильное сопоставление
+                leftItems.forEach(item => {
+                    if (item.dataset.match === left && !item.classList.contains('correct')) {
+                        item.classList.remove('selected');
+                        item.classList.add('incorrect');
+                        
+                        setTimeout(() => {
+                            item.classList.remove('incorrect');
+                        }, 1000);
+                    }
+                });
+                
+                rightItems.forEach(item => {
+                    if (item.dataset.match === right && !item.classList.contains('correct')) {
+                        item.classList.remove('selected');
+                        item.classList.add('incorrect');
+                        
+                        setTimeout(() => {
+                            item.classList.remove('incorrect');
+                        }, 1000);
+                    }
+                });
+            }
+        }
+        
+        function checkAllMatched() {
+            const correctItems = document.querySelectorAll('.match-item.correct');
+            if (correctItems.length === 6) { // Все 6 элементов сопоставлены
+                setTimeout(() => {
+                    showFeedback('task3-feedback', 'Отлично! Все пары подобраны правильно!', 'success');
+                }, 500);
+            }
+        }
+    }
+
+    window.checkTask3 = function() {
+        const correctItems = document.querySelectorAll('.match-item.correct');
+        const totalItems = document.querySelectorAll('.match-item').length;
+        
+        if (correctItems.length === totalItems) {
+            showFeedback('task3-feedback', 'Отлично! Все пары подобраны правильно!', 'success');
+        } else {
+            const percentage = Math.round((correctItems.length / totalItems) * 100);
+            showFeedback('task3-feedback', `Правильно подобрано ${correctItems.length/2} из 3 пар (${percentage}%).`, 'error');
+        }
+    };
+});
