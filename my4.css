@@ -345,3 +345,133 @@ body {
     stroke-linecap: round;
     stroke-dasharray: 339;
     stroke-dashoffset: 339;
+    transition: stroke-dashoffset 1s ease;
+}
+
+.score-value {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-dark);
+}
+
+.result-details {
+    max-width: 400px;
+    margin: 2rem auto;
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: var(--gray);
+}
+
+.detail-value {
+    color: var(--primary-dark);
+    font-weight: 600;
+}
+
+.result-feedback {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: left;
+}
+
+.result-feedback h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.result-feedback ul {
+    list-style: none;
+    padding: 0;
+}
+
+.result-feedback li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.result-feedback li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.result-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .test-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .test-progress {
+        width: 100%;
+    }
+    
+    .test-title {
+        font-size: 1.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .test-section {
+        padding: 1rem;
+    }
+    
+    .question-card {
+        padding: 1.5rem;
+    }
+    
+    .question-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .test-controls {
+        flex-direction: column;
+    }
+    
+    .result-buttons {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
