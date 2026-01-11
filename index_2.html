@@ -30,6 +30,7 @@
                         <li><span class="highlight">Оперативная память (RAM)</span></li>
                         <li><span class="highlight">Жёсткий диск (HDD/SSD)</span></li>
                         <li><span class="highlight">Блок питания (PSU)</span></li>
+                        <li><span class="highlight">Видеокарта</span></li>
                     </ul>
                 </div>
 
@@ -45,7 +46,7 @@
                         <li><span class="highlight">Устройства вывода</span></li>
                         <li><span class="highlight">Устройства хранения</span></li>
                         <li><span class="highlight">Мультимедийные устройства</span></li>
-                        <li><span class="highlight">Видеокарта</span></li>
+                        <li><span class="highlight">Сетевые устройства</span></li>
                     </ul>
                 </div>
             </div>
@@ -59,26 +60,6 @@
         </section>
     </div>
     
-    <script>
-        // Скрипт для анимации при прокрутке
-        document.addEventListener('DOMContentLoaded', function() {
-            const observerOptions = {
-                threshold: 0.1
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-on-scroll');
-                    }
-                });
-            }, observerOptions);
-            
-            // Наблюдаем за всеми карточками
-            document.querySelectorAll('.component-card').forEach(card => {
-                observer.observe(card);
-            });
-        });
-    </script>
+
 </body>
 </html>
