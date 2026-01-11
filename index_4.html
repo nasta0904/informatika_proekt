@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка знаний - Устройство компьютера</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="my4.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Хедер теста -->
+        <header class="test-header">
+            <div class="test-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="current-question">1</span>/<span id="total-questions">10</span>
+                </div>
+            </div>
+            <div class="score-display">
+                <i class="fas fa-star"></i>
+                <span id="score">0</span> баллов
+            </div>
+        </header>
+
+        <!-- Основная секция теста -->
+        <section class="test-section">
+            <h1 class="test-title">
+                <i class="fas fa-graduation-cap"></i>
+                Проверка знаний: Устройство компьютера
+            </h1>
+            <p class="test-subtitle">Ответьте на 10 вопросов по изученным темам</p>
+
+            <!-- Контейнер для вопросов -->
+            <div class="questions-container" id="questions-container">
+                <!-- Вопросы будут генерироваться через JavaScript -->
+            </div>
+
+            <!-- Панель управления -->
+            <div class="test-controls">
+                <button class="btn btn-secondary" id="prev-btn">
+                    <i class="fas fa-arrow-left"></i> Назад
+                </button>
+                <button class="btn btn-primary" id="next-btn">
+                    Далее <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn btn-success" id="submit-btn" style="display: none;">
+                    <i class="fas fa-paper-plane"></i> Завершить тест
+                </button>
+            </div>
+
+            <!-- Результаты теста -->
+            <div class="results-container" id="results-container" style="display: none;">
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h2 id="result-title">Результат теста</h2>
+                    <div class="score-circle">
+                        <div class="circle-progress">
+                            <svg width="120" height="120">
+                                <circle class="circle-bg" cx="60" cy="60" r="54"></circle>
+                                <circle class="circle-fill" cx="60" cy="60" r="54"></circle>
+                            </svg>
+                            <div class="score-value">
+                                <span id="final-score">0</span>%
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Правильных ответов:</span>
+                            <span id="correct-answers" class="detail-value">0/10</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Потрачено времени:</span>
+                            <span id="time-spent" class="detail-value">0:00</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Уровень знаний:</span>
+                            <span id="knowledge-level" class="detail-value">Новичок</span>
+                        </div>
+                    </div>
+
+                    <div class="result-feedback" id="result-feedback">
+                        <!-- Обратная связь будет генерироваться -->
+                    </div>
+
+                    <div class="result-buttons">
+                        <button class="btn btn-primary" id="restart-btn">
+                            <i class="fas fa-redo"></i> Пройти тест снова
+                        </button>
+                        <a href="index_3.html" class="btn btn-secondary">
+                            <i class="fas fa-book"></i> Вернуться к обучению
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="test-questions.js"></script>
+    <script src="test-script.js"></script>
+</body>
+</html>
