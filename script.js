@@ -4,56 +4,23 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('💻 Начни изучение с раздела "Компоненты ПК"');
 
     // Инициализация всех функций
-    initSmoothScroll();
     initScrollAnimations();
     initCardInteractivity();
     initNotificationExample();
     initStepsAnimation();
 });
 
-// Функция для плавной прокрутки
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            
-            if (targetId === '#' || targetId === '') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const offset = 80; // Отступ для фиксированного хедера
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
-
 // Функция для анимации при скролле
 function initScrollAnimations() {
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    const animatedElements = document.querySelectorAll('.component-card.animate-on-scroll');
     
     if (animatedElements.length === 0) return;
     
-    // Создаем анимацию bounce
-    if (!document.querySelector('#bounce-animation-style')) {
+    // Создаем анимацию fadeInUp если ее еще нет
+    if (!document.querySelector('#fadeInUp-animation-style')) {
         const style = document.createElement('style');
-        style.id = 'bounce-animation-style';
+        style.id = 'fadeInUp-animation-style';
         style.textContent = `
-            @keyframes bounce {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-10px); }
-            }
-            
-            .step:hover .step-number {
-                animation: bounce 0.5s ease;
-            }
-            
             @keyframes fadeInUp {
                 from {
                     opacity: 0;
@@ -65,7 +32,7 @@ function initScrollAnimations() {
                 }
             }
             
-            .animate-on-scroll.visible {
+            .animate-on-scroll.animated {
                 animation: fadeInUp 0.8s ease forwards;
             }
         `;
@@ -81,11 +48,10 @@ function initScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                
                 // Добавляем задержку для последовательного появления
                 const index = Array.from(animatedElements).indexOf(entry.target);
                 entry.target.style.animationDelay = `${index * 0.2}s`;
+                entry.target.classList.add('animated');
                 
                 // Перестаем наблюдать за элементом после его появления
                 observer.unobserve(entry.target);
@@ -97,19 +63,13 @@ function initScrollAnimations() {
     animatedElements.forEach(element => {
         observer.observe(element);
     });
-
-    // Инициализируем видимость первых элементов для немедленного показа
-    setTimeout(() => {
-        const firstElements = document.querySelectorAll('.animate-on-scroll:nth-child(-n+2)');
-        firstElements.forEach(element => {
-            element.classList.add('visible');
-        });
-    }, 300);
 }
 
 // Функция для интерактивности карточек
 function initCardInteractivity() {
-    document.querySelectorAll('.feature-card, .component-card').forEach(card => {
+    const cards = document.querySelectorAll('.component-card');
+    
+    cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             if (window.innerWidth > 768) { // Только на десктопе
                 this.style.transform = 'translateY(-10px)';
@@ -121,6 +81,12 @@ function initCardInteractivity() {
             if (window.innerWidth > 768) { // Только на десктопе
                 this.style.transform = 'translateY(0)';
             }
+        });
+        
+        // Добавляем интерактивность при клике
+        card.addEventListener('click', function() {
+            const title = this.querySelector('h2')?.textContent || 'Компонент';
+            showNotification(`Вы выбрали: ${title}`, 'info');
         });
     });
 }
@@ -194,28 +160,46 @@ function showNotification(message, type = 'info') {
 
 // Пример использования уведомлений
 function initNotificationExample() {
-    const startButton = document.querySelector('.btn-primary');
+    const startButton = document.querySelector('.btn');
     if (startButton) {
         startButton.addEventListener('click', function(e) {
             // Проверяем, ведет ли кнопка на страницу
             const href = this.getAttribute('href');
-            if (!href || href === '#' || href === '') {
+            if (href && href !== '#' && href !== '') {
+                // Если есть ссылка, показываем уведомление и позволяем переход
+                e.preventDefault();
+                showNotification('🎉 Переходим к следующему уроку!', 'success');
+                
+                // Через 1.5 секунды переходим на страницу
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 1500);
+            } else {
+                // Если нет ссылки, показываем уведомление
                 e.preventDefault();
                 showNotification('🎉 Отличный выбор! Начинаем обучение!', 'success');
-                
-                // Через 2 секунды показываем следующее уведомление
-                setTimeout(() => {
-                    showNotification('💡 Совет: Начни с изучения процессора - это мозг компьютера!', 'info');
-                }, 2500);
             }
         });
     }
 }
 
-// Анимация для шагов обучения
+// Анимация для шагов обучения (если они есть)
 function initStepsAnimation() {
     const steps = document.querySelectorAll('.step');
     if (steps.length === 0) return;
+    
+    // Создаем анимацию bounce если ее еще нет
+    if (!document.querySelector('#bounce-animation-style')) {
+        const style = document.createElement('style');
+        style.id = 'bounce-animation-style';
+        style.textContent = `
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
     
     // Анимируем шаги при загрузке
     setTimeout(() => {
@@ -232,11 +216,34 @@ function initStepsAnimation() {
 
 // Дополнительная функция для принудительного запуска анимации
 function animateElements() {
-    const elements = document.querySelectorAll('.animate-on-scroll:not(.visible)');
+    const elements = document.querySelectorAll('.animate-on-scroll:not(.animated)');
     elements.forEach((element, index) => {
         setTimeout(() => {
-            element.classList.add('visible');
+            element.classList.add('animated');
         }, index * 100);
+    });
+}
+
+// Функция для плавной прокрутки (если понадобится)
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            
+            if (targetId === '#' || targetId === '') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const offset = 80; // Отступ для фиксированного хедера
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
 }
 
@@ -249,21 +256,3 @@ window.addEventListener('error', function(e) {
     console.error('Произошла ошибка:', e.message);
     showNotification('Произошла ошибка при загрузке страницы', 'error');
 });
-     document.addEventListener('DOMContentLoaded', function() {
-            const observerOptions = {
-                threshold: 0.1
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-on-scroll');
-                    }
-                });
-            }, observerOptions);
-            
-            // Наблюдаем за всеми карточками
-            document.querySelectorAll('.component-card').forEach(card => {
-                observer.observe(card);
-            });
-        });
