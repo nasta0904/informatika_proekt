@@ -35,6 +35,45 @@ body {
     padding: 20px;
 }
 
+/* Кнопка возврата к обучению */
+.return-header {
+    padding: 0 0 15px 0;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.btn-return {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: white;
+    color: var(--primary);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary);
+    box-shadow: var(--shadow);
+    font-size: 0.95rem;
+}
+
+.btn-return:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateX(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-return i {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.btn-return:hover i {
+    transform: translateX(-3px);
+}
+
 /* Хедер теста */
 .test-header {
     display: flex;
@@ -763,6 +802,11 @@ body {
     .tf-options {
         flex-direction: column;
     }
+
+    .btn-return {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -784,5 +828,14 @@ body {
     
     .task-title {
         font-size: 1.1rem;
+    }
+
+    .return-header {
+        padding: 0 0 10px 0;
+    }
+    
+    .btn-return {
+        width: 100%;
+        justify-content: center;
     }
 }
